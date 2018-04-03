@@ -5,7 +5,7 @@ from fabric.api import env, run, put, local
 import os
 
 
-env.hosts = ['54.152.191.36', '54.174.239.237']
+env.hosts = ['34.227.229.159', '34.229.125.244']
 
 def do_pack():
     try:
@@ -27,8 +27,8 @@ def do_deploy(archive_path):
         run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
             .format(archive, archive[:-4]))
         run("rm /tmp/{}".format(archive))
-        # run("mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/"
-            # .format(archive[:-4], archive[:-4]))
+        run("mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}/"
+            .format(archive[:-4], archive[:-4]))
         run("rm -rf /data/web_static/releases/{}/web_static".format(archive[:-4]))
         run("rm -rf /data/web_static/current")
         run("ln -s /data/web_static/releases/{}/ /data/web_static/current"

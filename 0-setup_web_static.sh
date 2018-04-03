@@ -27,7 +27,7 @@ ln -sf /data/web_static/releases/test/ /data/web_static/current
 # giving custody
 chown -hR ubuntu:ubuntu /data
 
-sudo sed -i "38i location /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n" /etc/nginx/sites-available/default
+sudo sed -i "38i location /hbnb_static {\n\t\talias /data/web_static/current;\n\t}\n" /etc/nginx/sites-available/default
 
 # nginx restart
 sudo service nginx restart
