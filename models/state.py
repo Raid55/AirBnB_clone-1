@@ -24,5 +24,5 @@ class State(BaseModel, Base):
     else:
         @property
         def cities(self):
-            obj_dict = models.storage.all(City)
-            return {k: v for k, v in obj_dict.items() if v.state_id == self.id}
+            obj_dict = models.storage.all(City)            
+            return [v for k, v in obj_dict.items() if v.state_id == self.id]
