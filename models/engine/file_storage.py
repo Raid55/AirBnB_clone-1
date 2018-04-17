@@ -17,7 +17,7 @@ class FileStorage:
         '''
             Return the dictionary
         '''
-        if cls == None:
+        if cls is None:
             return self.__objects
         else:
             obj_dict = {}
