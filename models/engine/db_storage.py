@@ -1,5 +1,4 @@
-#
-/usr/bin/python3
+#!/usr/bin/python3
 '''
     Define class DB stroage
 '''
@@ -42,8 +41,10 @@ class DBStorage:
 
     def all(self, cls=None):
         tmp = []
+        if type(cls) == str:
+            cls = eval(cls)
         if cls is None:
-            tmp_all_query = [City, State] # , User,  Place, Review, Amenity
+            tmp_all_query = [City, State, User, Place, Review, Amenity]
             output = self.__session.query(*tmp_all_query)
             for a, b in output:
                 tmp.append(a)
@@ -68,5 +69,7 @@ class DBStorage:
         sesh_maker = sessionmaker(
             bind=self.__engine,
             expire_on_commit=False)
-        Session = scoped_session(sesh_maker)
-        self.__session = Session()
+        self.__session = scoped_session(sesh_maker)
+
+    def close(self):
+        self.__session.remove()
